@@ -9,4 +9,13 @@ const readTalkerFile = async () => {
   return talker;
 };
 
-module.exports = readTalkerFile;
+const writeTalkerFile = async (params) => {
+  const data = JSON.stringify(params);
+  const talkers = await fs.writeFile(FILE, data, 'utf-8');
+  return talkers;
+};
+
+module.exports = {
+  readTalkerFile,
+  writeTalkerFile,
+};
