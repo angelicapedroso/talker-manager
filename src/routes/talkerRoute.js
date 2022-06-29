@@ -1,6 +1,6 @@
 const express = require('express');
-const { getAll, getId, create } = require('../controllers/talkerController');
-const { 
+const { getAll, getId, create, update } = require('../controllers/talkerController');
+const {
   validateToken,
   validateName,
   validateAge,
@@ -22,5 +22,14 @@ router.post('/',
   validateWatchedAt,
   validateRate,
   create);
+
+router.put('/:id',
+  validateToken,
+  validateName,
+  validateAge,
+  validateTalk,
+  validateWatchedAt,
+  validateRate, 
+  update);
 
 module.exports = router;

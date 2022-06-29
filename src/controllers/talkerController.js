@@ -28,8 +28,20 @@ const create = async (req, res) => {
   return res.status(201).json(talker);
 };
 
+const update = async (req, res) => {
+  const { body: { name, age, talk }, params: { id } } = req;
+  const talker = await talkerService.update({
+    name,
+    age,
+    id: Number(id),
+    talk,
+  });
+  return res.status(200).json(talker);
+};
+
 module.exports = {
   getAll,
   getId,
   create,
+  update,
 };

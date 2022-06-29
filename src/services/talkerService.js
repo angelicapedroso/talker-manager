@@ -14,8 +14,16 @@ const getId = async (params) => {
 
 const create = async (params = {}) => {
   const talkers = await readTalkerFile();
-  const newTalkers = [...talkers, params];
-  await writeTalkerFile(newTalkers);
+  const newTalker = [...talkers, params];
+  await writeTalkerFile(newTalker);
+  return params;
+};
+
+const update = async (params = {}) => {
+  const talkers = await readTalkerFile();
+  const talkersFilter = talkers.filter(({ id }) => id !== Number(params.id));
+  const newTalker = [...talkersFilter, params];
+  await writeTalkerFile(newTalker);
   return params;
 };
 
@@ -23,4 +31,5 @@ module.exports = {
   getAll,
   getId,
   create,
+  update,
 };
