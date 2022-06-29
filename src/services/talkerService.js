@@ -27,9 +27,18 @@ const update = async (params = {}) => {
   return params;
 };
 
+const destroy = async (params) => {
+  const talkers = await readTalkerFile();
+  const talkersFilter = talkers.filter(({ id }) => id !== Number(params));
+  const newTalkers = [...talkersFilter];
+  const newFile = await writeTalkerFile(newTalkers);
+  return newFile;
+};
+
 module.exports = {
   getAll,
   getId,
   create,
   update,
+  destroy,
 };
